@@ -1,0 +1,33 @@
+; Test des opérations arithmétiques de base
+(+ 1 2)
+(- 5 3)
+(* 2 3)
+(/ 10 2)
+
+; Test des variables et des définitions simples
+(def (x 10))
+(def (y 20))
+(+ x y)
+(* x y)
+
+; Test de la définition de fonctions et des appels de fonctions
+(def (add (lambda (a b) (+ a b))))
+(add 3 4)
+
+(def (mul (lambda (a b) (* a b))))
+(mul 3 4)
+
+; Test des listes et des opérations sur les listes
+(null)
+(cons 1 (cons 2 (cons 3 null)))
+(car (cons 1 (cons 2 (cons 3 null))))
+(cdr (cons 1 (cons 2 (cons 3 null))))
+
+; Test des expressions conditionnelles
+(case null
+  0
+  (x xs (+ 1 (car xs))))
+
+(case (cons 1 null)
+  0
+  (x xs (+ 1 x)))
