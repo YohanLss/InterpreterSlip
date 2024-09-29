@@ -1,0 +1,38 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+
+\title{Conception des langages de programmations \\ \large Rapport Travail Pratique 1}
+\author{Yohan Lessimi (20222122) \and Fatoumata Mané (20214863)}
+\date{2024/05/28}
+
+\begin{document}
+
+\maketitle
+
+\section*{Introduction}
+\subsection*{Dispositions pour la compréhension de l’énoncé}
+Avant de réellement entamer le devoir et d’éviter le plus possible les confusions nous avions opté pour une stratégie qui consistait à lire et analyser l’énoncé du devoir à quelques reprises de manière individuelle pour par la suite discuter de l’approche à suivre en équipe. Afin de pouvoir bien performer lors de ce premier travail pratique nous étions dans l’obligation de nous mettre à jour sur l’ensemble des notions d’Haskell vues en cours depuis le début du semestre. Ce qui fut assez facile car nos révisions pour l’examen intra nous ont données une bonne longueur d’avance.
+
+\subsection*{Pair-Coding}
+En soit ce devoir nous a permis de comprendre l’importance du pair-coding car au premier abord le devoir semble lourd et en travaillant de manière individuelle on peut facilement manquer certains détails importants rester bloqué lors des instances de débogage ou tout simplement se sentir surchargé. Nos discussions d’équipe nous ont permis de voir l’ampleur du devoir et d’avancer dans le projet en conséquent. Quelques problèmes rencontrés seront décrits dans la prochaine section.
+
+\section*{Problèmes et solutions rencontrés}
+\subsection*{Extraction des données de l’énoncé}
+En ce qui concerne la syntaxe du langage fonctionnel Psil elle était assez simple à comprendre en se fiant aux exemples fournis pour le devoir. Le plus dur était de comprendre la totalité du code source avant de l’implémenter.
+
+\subsection*{Transformation du code source}
+Avant de commencer à compléter les sections s2l et eval nous avons dû nous familiariser avec le code de base fourni et comprendre la représentation Sexp et suivre le chemin d’une expression Lisp vers une expression Sexp. Voici les principales difficultés rencontrées :
+
+La première difficulté a été de bien comprendre la structure des Sexp. Comme mentionné dans le code une Sexp peut être une liste vide (Snil), une paire (Scons), un symbole (Ssym) ou un entier (Snum). Cela nous a pris un peu de temps, les traductions nous paraissaient un peu déroutantes au début, surtout pour des expressions plus complexes. Nous avons donc travaillé avec des exemples plutôt simples pour analyser la conversion.
+
+Une fois la structure des Sexp comprise, lors de l’implémentation de la fonction s2l, nous avons remarqué qu’il y avait plusieurs formes d’expression à prendre en compte. Nous avions dû l’implémenter petit à petit en commençant par les cas que l’on jugeait plus faciles comme les entiers et les symboles. On s’est aussi assuré que chaque type de Sexp était bien identifié avant d’être converti au Lexp approprié et nous avons fait usage de pattern matching pour différencier les symboles (Ssym) des nombres (Snum). Notre code n’arrivait pas à convertir correctement les listes et les expressions imbriquées en expressions Lexp, on a donc opté pour une décomposition récursive des listes avec l’utilisation de sexpToList et des expressions imbriquées.
+
+Ensuite, une autre difficulté majeure a été de comprendre et de modifier l’analyseur syntaxique. L’utilisation de Parsec dans le code fourni pour convertir les chaînes de caractères en Sexp nous a permis de voir et comprendre comment les fonctions de parsing (pSymbol, pTsil, pQuote) interagissent pour reconnaître et construire les expressions Sexp.
+
+\subsection*{Implémentation de l'Évaluateur (eval)}
+En ce qui concerne son l’implémentation, nous nous attendions à beaucoup plus difficile mais à notre surprise ce fut très simple. Nous nous sommes assurés que les différents types d’expressions (Lnum, Lvar, Lproc, etc.) étaient correctement évalués en fonction de l'environnement d'exécution VEnv.
+
+\section*{Conclusion}
+Pour conclure, nous avons la certitude que ce premier travail pratique nous a bel et bien lancé dans le monde de Haskell. Il nous a permis d’approfondir nos connaissances et de parfaire notre communication d’équipe. Malgré l’énoncé très clair, ce travail nous a pris énormément de temps à réaliser. Heureusement, nous n’avons pas ressenti le besoin d’effectuer des modifications au code de base fourni. Nous retenons que pour l’avenir il serait préférable pour notre équipe de commencer les devoirs dès leur dépôt sur Studium.
+
+\end{document}
